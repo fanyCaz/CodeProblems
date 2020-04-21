@@ -1,4 +1,4 @@
-#strings as arrays
+#strings => arrays
 import math
 
 def permutar(m,n):
@@ -37,7 +37,8 @@ print("""Cuantas combinaciones de alumnos puede haber en los elegidos para Presi
 print( permutar(80,4) )
 
 print("Subset de un Set; se muestra la correspondencia del subset al set")
-print("X = {a,b,c,d,e,f,g} V = {b,c,g} V is a subset of X 01100010")
+print("X = {a,b,c,d,e,f,g} V = {b,c,g} V is a subset of X : 01100010")
 print("Hay {} numero de combinaciones para el subset de 3 del set X".format(combinar(8,3)) )
-
 # X = {a,b,c,d,e,f,g} V = {b,c,g} V is a subset of X 01100010
+
+#COMBINATORIAL PROOFS->2.4 http://www.rellek.net/book/s_strings_comb-proof.html
