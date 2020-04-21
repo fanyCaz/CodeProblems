@@ -1,0 +1,20 @@
+#OBSERVATION
+You observe individuals(car, person, dog) behave with a treatment(consumption, spending)
+
+#RELATION
+Associaton->any relation ( a link )
+#CAUSATION
+A behavior causes xyz
+
+#COMPARISON
+Treatment group
+Individuals who receive the treatment
+Control group
+Individuals who doesn't receive the treatment
+
+#DIFFERENCES
+Systematic differences other than the tratment.
+Confounding factors: factors that the person who makes the study doesn't see. (weight of babies if mother drinks)
+
+RANDOMIZED CONTROLLED EXPERIMENT
+Random != Haphazard(Lack of plan, order or direction)
