@@ -42,3 +42,8 @@ print("Hay {} numero de combinaciones para el subset de 3 del set X".format(comb
 # X = {a,b,c,d,e,f,g} V = {b,c,g} V is a subset of X 01100010
 
 #COMBINATORIAL PROOFS->2.4 http://www.rellek.net/book/s_strings_comb-proof.html
+#The office assistant is distributing supplies. In how many ways can he distribute 18 identical
+# folders among four office employees: Audrey, Bart, Cecilia and Darren, 
+# with the additional restriction that each will receive at least one folder?
+print("Si son 18 y cada uno debe tener uno, entonces se combinan los restantes")
+print( combinar(17,3) )
