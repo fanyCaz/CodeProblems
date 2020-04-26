@@ -23,7 +23,7 @@ def similitud(programas,i,y):
 		for j in range(y,len(programas)):
 			suma = funcionDisimilitud(programas[i],programas[j])
 			if(suma < S):
-				verticesMasCercanos.append([i,j])
+				verticesMasCercanos.append([programas[i],programas[j]])
 			s.append([i,j,suma])	#s = (v,w)
 			print( str(i+1) + "," + str(j+1) + ": " + str(suma) )
 		i+=1
