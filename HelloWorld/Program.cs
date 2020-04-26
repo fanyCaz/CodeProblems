@@ -117,7 +117,7 @@ namespace HelloWorld
             Console.WriteLine(personita.age);
         }
 
-        private static void ControlFlow()
+        private static void ControlFlowIf()
         {
             //ej 1
             int number = 0;
@@ -150,12 +150,67 @@ namespace HelloWorld
             }
 
             //ej4
+            /*speed camera*/
+            Console.WriteLine("Ingresa la velocidad Limite");
+            int speedLimit = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Ingresa la velocidad del carro");
+            int speedCar = Convert.ToInt32(Console.ReadLine());
+            int demeritPoints = 0;
+            if(speedCar <= speedLimit)
+            {
+                Console.WriteLine("Ok");
+            }
+            else
+            {
+                demeritPoints = (speedCar - speedLimit) / 5;
+                Console.WriteLine("{0} puntos de Demerito",demeritPoints);
+            }
+            if(demeritPoints > 12)
+            {
+                Console.WriteLine("Licencia Suspendida");
+            }
+        }
 
+        private static void ControlFlowCycle()
+        {
+            string phrase = "you've got the love";  //string is enumerable cuz its an array of characters
+            foreach(var letter in phrase)
+            {
+                Console.WriteLine(letter);
+            }
+            while (true)
+            {
+                Console.WriteLine("Type something");
+                var input = Console.ReadLine();
+                if (String.IsNullOrWhiteSpace(input))
+                {
+                    break;
+                }
+            }
+
+            var random = new Random();
+            Console.WriteLine(random.Next(97,157));
+
+            //ej5 input 1,2,4 string; output 4; regresa el numero mayor del string
+            Console.WriteLine("Ingresa unos numeracos x,g,s,g");
+            var inputStr = Console.ReadLine();
+            var separation = inputStr.Split(',');
+            int max = Convert.ToInt32(separation[0]);
+            foreach(var s in separation)
+            {
+                if (max < Convert.ToInt32(s))
+                {
+                    max = Convert.ToInt32(s);
+                }
+            }
+            Console.WriteLine(max);
         }
         static void Main(string[] args)
         {
             //BasicStuff();
-            ControlFlow();
+            //ControlFlowIf();
+            //ControlFlowCycle();
+
         }
     }
 }
