@@ -21,5 +21,5 @@ def contarElementosDentroString(string):
 arregloStr = "MITCHELTKELLERANDWILLIAMTTROTTERAREGENIUSES!!"
 
 combinacion,n = contarElementosDentroString(arregloStr)
-
+print("Coeficientes Multinomial del siguiente string: {}".format(arregloStr))
 print("Tamaño del string: {}, Resultado: {}".format(n,combinacion))
