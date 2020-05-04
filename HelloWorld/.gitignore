@@ -111,6 +111,8 @@ ipch/
 *.VC.db
 *.VC.VC.opendb
 
+#custom
+*.project.nuget.cache
 *.cache
 *.nuget.cache
 # Visual Studio profiler
