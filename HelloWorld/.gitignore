@@ -112,6 +112,7 @@ ipch/
 *.VC.VC.opendb
 
 *.cache
+*.nuget.cache
 # Visual Studio profiler
 *.psess
 *.vsp
