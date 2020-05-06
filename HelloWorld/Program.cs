@@ -1,5 +1,6 @@
 ﻿using HelloWorld.Mates;     //trae el scope donde esta declarada esta clase
 using System;   //namespace lo traes con using
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace HelloWorld
@@ -205,11 +206,42 @@ namespace HelloWorld
             }
             Console.WriteLine(max);
         }
+
+        public static int firstNonRepetitiveVariable(string s)
+        {
+            var letras = new char[] { };
+            int indexLetra = -1;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!letras.Contains(s[i]))
+                {
+                    letras.Append(s[i]);
+                    int suma = 0;
+                    for (int j = 0; j < s.Length; j++)
+                    {
+                        if (s[i] == s[j])
+                        {
+                            suma += 1;
+                        }
+                        
+                    }
+                    if (suma == 1)
+                    {
+                        indexLetra = i;
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine(indexLetra);
+            return indexLetra;
+        }
         static void Main(string[] args)
         {
             //BasicStuff();
             //ControlFlowIf();
             //ControlFlowCycle();
+            firstNonRepetitiveVariable("leetlovecode");
+
 
         }
     }
