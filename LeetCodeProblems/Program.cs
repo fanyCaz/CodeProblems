@@ -74,6 +74,8 @@ namespace LeetCodeProblems
             int[] num = new int[3] { 3, 2, 4 };
             int[] response = TwoSumOnePassHashTable(num,6);
             Console.WriteLine(response[0] + " - " + response[1]);
+            int[] majority_elements = new int[1] { 1 };
+            Console.WriteLine( RetoMayo.MajorityElement(majority_elements) );
         }
     }
 }
