@@ -68,6 +68,11 @@ namespace LeetCodeProblems
             throw new Exception("No hubo solución");
         }
 
+        public static void HashTable()
+        {
+
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");

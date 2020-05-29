@@ -29,6 +29,9 @@ estadosCeldas = np.zeros( (numCeldasX, numCeldasY) )
 
 #unica celula viva al principio
 estadosCeldas[10,0] = 1
+estadosCeldas[11,0] = 1
+estadosCeldas[11,6] = 1
+estadosCeldas[21,0] = 1
 
 while True:
 	#se hace una copia para mantener los estados originales mientras dure la iteracion
