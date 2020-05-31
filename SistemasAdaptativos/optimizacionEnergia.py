@@ -10,8 +10,9 @@ import numpy as np
 #variables de algoritmo
 probabilidad_mutacion = 0.2
 # pressure              = 2   #cantidad de individuos que se reproduciran
-numero_poblacion      = 5   #panel solar - turbina viento - generador diesel - bateria cargada - bateria descargada
-longitud              = 2   #longitud de material genetico para cada individuo (variables decision)
+numero_individuos      = 5   #panel solar - turbina viento - generador diesel - bateria cargada - bateria descargada
+longitud               = 2   #longitud de material genetico para cada individuo (variables decision)
+numero_poblaciones     = 6
 
 #variables de sistema
 flh = 1825	#horas anuales de PV
@@ -46,17 +47,19 @@ def obtenerSiguienteStatusBateria(capacidad,uso,statusAnterior):
 	return statusAnterior + (uso*Eficiencia.BATERIA.value)
 
 def PoblacionInicial():
-	poblacion = np.zeros( (numero_poblacion,longitud) )
-	for i in range(0, numero_poblacion):
-		for j in range(0, longitud):
-			poblacion[i,j] = random.randint(0,100)
+	poblacion = np.zeros( (numero_poblaciones,numero_individuos,longitud) )
+	# poblacion = np.zeros( (numero_individuos,longitud) )
+	for k in range(0, numero_poblaciones):
+		for i in range(0, numero_individuos):
+			for j in range(0, longitud):
+				poblacion[k,i,j] = random.randint(0,100)
 	return poblacion
 
-def ObtenerFitness(padres):
+def ObtenerFitness(individuos):
 	fitness = 0
 	costo = 0
 	precioDiesel = 0
-	for index,hijo in enumerate(padres):
+	for index,hijo in enumerate(individuos):
 		# if #ecuacion 2
 			# fitness += 1
 		if index == 1:
@@ -79,10 +82,40 @@ def ObtenerFitness(padres):
 				fitness += 1
 
 		costo += ((Precios.DIESEL.value / Eficiencia.DIESEL.value) + precioDiesel)
-	return fitness,costo
+	return fitness
 
+def Reproduccion(padres):
+	#FITNESS
+	fitnessPorPoblacion = np.zeros( (numero_poblaciones,2) )
+	#obtener fitness de cada poblacion
+	for index,individuos in enumerate(padres):
+		#Obtener el fitness de cada poblacion
+		fit = ObtenerFitness(individuos)
+		fitnessPorPoblacion[index,0] = fit
+		fitnessPorPoblacion[index,1] = index #se guarda ubicacion de ese arreglo en poblacion original
+	
+	#SELECCION
+	#hacer un sort de estos individuos por el fitness para seleccion
+	poblacionSorted = fitnessPorPoblacion[fitnessPorPoblacion[:,0].argsort()]
+	print( padres )
+	print(  poblacionSorted )
+
+	#REPRODUCCION
+	for i in range( int((len(poblacionSorted)/2)) ):
+		print( "parejas" )
+		pareja1 = padres[ int(poblacionSorted[i,1]) ]
+		pareja2 = padres[ int(poblacionSorted[len(poblacionSorted)-(1+i),1]) ]
+		print(pareja1)
+		print(pareja2)
+
+# def Mutacion(hijos):
+#Crear una poblacion con varios habitantes
 padres = PoblacionInicial()
-fit, costo = ObtenerFitness(padres)
-if fit <= 6:
-	print("otr vez")
-print(padres)
+
+
+# print(padres)
+Reproduccion(padres)
+
+# if fit <= 6:
+# 	print("otr vez")
+
