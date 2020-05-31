@@ -60,8 +60,7 @@ def ObtenerFitness(individuos):
 	costo = 0
 	precioDiesel = 0
 	for index,hijo in enumerate(individuos):
-		# if #ecuacion 2
-			# fitness += 1
+		#ecuacion 2 para los dos primeros objetos
 		if index == 1:
 			fitness += 1 if (hijo[1] <= (hijo[0] * Capacidad.SOLAR.value)) else 0
 			costo += Capacidad.SOLAR.value * (Precios.SOLAR.value + PreciosMantenimiento.SOLAR.value)
@@ -70,6 +69,7 @@ def ObtenerFitness(individuos):
 			costo += Capacidad.VIENTO.value * (Precios.VIENTO.value + PreciosMantenimiento.VIENTO.value)
 			for i in range(3760):
 				precioDiesel += hijo[1]
+		#fin ecuacion 2
 		elif index == 3:
 			fitness += 1 if (hijo[1] <= (hijo[0] * Capacidad.DIESEL.value)) else 0
 			costo += Capacidad.DIESEL.value * (Precios.DIESEL.value + PreciosMantenimiento.DIESEL.value)
@@ -98,15 +98,30 @@ def Reproduccion(padres):
 	#hacer un sort de estos individuos por el fitness para seleccion
 	poblacionSorted = fitnessPorPoblacion[fitnessPorPoblacion[:,0].argsort()]
 	print( padres )
-	print(  poblacionSorted )
+	print( poblacionSorted )
 
 	#REPRODUCCION
 	for i in range( int((len(poblacionSorted)/2)) ):
 		print( "parejas" )
-		pareja1 = padres[ int(poblacionSorted[i,1]) ]
-		pareja2 = padres[ int(poblacionSorted[len(poblacionSorted)-(1+i),1]) ]
-		print(pareja1)
-		print(pareja2)
+		indexPrimerPareja  = int(poblacionSorted[i,1])
+		indexSegundaPareja = int(poblacionSorted[len(poblacionSorted)-(1+i),1])
+		pareja1 = padres[ indexPrimerPareja ]
+		pareja2 = padres[ indexSegundaPareja ]
+		#copia de arreglos, porque por some reason los arreglos cambian
+		copiaPareja2 = pareja2.copy()
+		copiaPareja1 = pareja1.copy()
+		for j in range(numero_individuos):
+			print("pareja1 : {}".format(pareja1[j]))
+			print("pareja2 : {}".format(pareja2[j]))
+			
+			padres[indexPrimerPareja,j,0] = pareja1[j,0]
+			padres[indexPrimerPareja,j,1] = pareja2[j,1]
+
+			padres[indexSegundaPareja,j,0] = copiaPareja1[j,1]
+			padres[indexSegundaPareja,j,1] = copiaPareja2[j,0]
+
+	print( padres )
+
 
 # def Mutacion(hijos):
 #Crear una poblacion con varios habitantes
