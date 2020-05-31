@@ -1,6 +1,6 @@
 # ecuacion de minimizacion
 
-#tc = sumatoria cj * (mcj + ccj) + pd/ndg * sumatoria xdg,t
+#tc = sumatoria cj * (mcj + ccj) + pj/nj * sumatoria xj,t
 
 #librerias
 from enum import Enum
@@ -48,7 +48,6 @@ def obtenerSiguienteStatusBateria(capacidad,uso,statusAnterior):
 
 def PoblacionInicial():
 	poblacion = np.zeros( (numero_poblaciones,numero_individuos,longitud) )
-	# poblacion = np.zeros( (numero_individuos,longitud) )
 	for k in range(0, numero_poblaciones):
 		for i in range(0, numero_individuos):
 			for j in range(0, longitud):
@@ -61,28 +60,52 @@ def ObtenerFitness(individuos):
 	precioDiesel = 0
 	for index,hijo in enumerate(individuos):
 		#ecuacion 2 para los dos primeros objetos
-		if index == 1:
+		if index == 0:
 			fitness += 1 if (hijo[1] <= (hijo[0] * Capacidad.SOLAR.value)) else 0
 			costo += Capacidad.SOLAR.value * (Precios.SOLAR.value + PreciosMantenimiento.SOLAR.value)
-		elif index == 2:
+		elif index == 1:
 			fitness += 1 if (hijo[1] <= (hijo[0] * Capacidad.VIENTO.value)) else 0
 			costo += Capacidad.VIENTO.value * (Precios.VIENTO.value + PreciosMantenimiento.VIENTO.value)
 			for i in range(3760):
 				precioDiesel += hijo[1]
+		elif index == 2:
+			fitness += 1 if (hijo[1] <= (hijo[0] * Capacidad.DIESEL.value)) else 0
 		#fin ecuacion 2
 		elif index == 3:
-			fitness += 1 if (hijo[1] <= (hijo[0] * Capacidad.DIESEL.value)) else 0
-			costo += Capacidad.DIESEL.value * (Precios.DIESEL.value + PreciosMantenimiento.DIESEL.value)
-			####
 			statusBateriaAnterior = (1 - Capacidad.BATERIA.value) * hijo[0]
 			statusBateria = obtenerSiguienteStatusBateria(hijo[0],hijo[1],statusBateriaAnterior)
 			if hijo[1] <= statusBateria:	#ecuacion 4
 				fitness += 1
 			if hijo[1] <= ((Capacidad.BATERIA.value * statusBateria) / Eficiencia.BATERIA.value):	#ecuacion 3
 				fitness += 1
-
-		costo += ((Precios.DIESEL.value / Eficiencia.DIESEL.value) + precioDiesel)
 	return fitness
+
+def ObtenerCosto(hijos):
+	costos = []
+	for hijo in hijos:
+		costo = 0
+		precioSolar = 0
+		precioViento = 0
+		precioDiesel = 0
+		precioBateria = 0
+		for index,unidad in enumerate(hijo):
+			if index == 0:
+				for i in range(3760):
+					precioSolar += unidad[1]
+				costo += precioSolar
+			elif index == 1:
+				for i in range(3760):
+					precioViento += unidad[1]
+				costo += precioViento
+			elif index == 2:
+				for i in range(3760):
+					precioDiesel += unidad[1]
+				costo += precioDiesel	
+			costo += Capacidad.SOLAR.value * (Precios.SOLAR.value + PreciosMantenimiento.SOLAR.value)
+			costo += Capacidad.DIESEL.value * (Precios.DIESEL.value + PreciosMantenimiento.DIESEL.value)
+			costo += Precios.DIESEL.value / Eficiencia.DIESEL.value
+		costos.append(costo)
+	return costos
 
 def Reproduccion(padres):
 	#FITNESS
@@ -97,40 +120,31 @@ def Reproduccion(padres):
 	#SELECCION
 	#hacer un sort de estos individuos por el fitness para seleccion
 	poblacionSorted = fitnessPorPoblacion[fitnessPorPoblacion[:,0].argsort()]
-	print( padres )
-	print( poblacionSorted )
 
 	#REPRODUCCION
+	#selecciona el de mayor fitness y luego el de menor, y asi hacia adentro
 	for i in range( int((len(poblacionSorted)/2)) ):
-		print( "parejas" )
 		indexPrimerPareja  = int(poblacionSorted[i,1])
 		indexSegundaPareja = int(poblacionSorted[len(poblacionSorted)-(1+i),1])
 		pareja1 = padres[ indexPrimerPareja ]
 		pareja2 = padres[ indexSegundaPareja ]
-		#copia de arreglos, porque por some reason los arreglos cambian
+		#copia de arreglos, porque por some reason los arreglos cambian con el tiempo t
 		copiaPareja2 = pareja2.copy()
 		copiaPareja1 = pareja1.copy()
 		for j in range(numero_individuos):
-			print("pareja1 : {}".format(pareja1[j]))
-			print("pareja2 : {}".format(pareja2[j]))
-			
 			padres[indexPrimerPareja,j,0] = pareja1[j,0]
 			padres[indexPrimerPareja,j,1] = pareja2[j,1]
-
 			padres[indexSegundaPareja,j,0] = copiaPareja1[j,1]
 			padres[indexSegundaPareja,j,1] = copiaPareja2[j,0]
 
-	print( padres )
+	return padres
+
+def MutacionIndividuos(hijos):
 
 
-# def Mutacion(hijos):
-#Crear una poblacion con varios habitantes
+#Crear una poblacion con seis comunidades
 padres = PoblacionInicial()
 
-
-# print(padres)
-Reproduccion(padres)
-
-# if fit <= 6:
-# 	print("otr vez")
-
+for i in range(5):
+	hijos = Reproduccion(padres)
+	costos = ObtenerCosto(hijos)
