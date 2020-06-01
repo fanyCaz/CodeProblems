@@ -51,8 +51,6 @@ def PoblacionInicial():
 
 def ObtenerFitness(individuos):
 	fitness = 0
-	costo = 0
-	precioDiesel = 0
 	for index,hijo in enumerate(individuos):
 		#ecuacion 2 para los dos primeros objetos
 		if index == 0:
@@ -113,20 +111,18 @@ def Reproduccion(padres):
 	poblacionSorted = fitnessPorPoblacion[fitnessPorPoblacion[:,0].argsort()]
 
 	#REPRODUCCION
-	#selecciona el de mayor fitness y luego el de menor, y asi hacia adentro
+	#selecciona el de mayor fitness y luego el de menor
 	for i in range( int((len(poblacionSorted)/2)) ):
 		indexPrimerPareja  = int(poblacionSorted[i,1])
 		indexSegundaPareja = int(poblacionSorted[len(poblacionSorted)-(1+i),1])
 		pareja1 = padres[ indexPrimerPareja ]
 		pareja2 = padres[ indexSegundaPareja ]
-		#copia de arreglos, porque por some reason los arreglos cambian con el tiempo t
+		
 		copiaPareja2 = pareja2.copy()
 		copiaPareja1 = pareja1.copy()
-		for j in range(numero_individuos):
-			padres[indexPrimerPareja,j,0] = pareja1[j,0]
-			padres[indexPrimerPareja,j,1] = pareja2[j,1]
-			padres[indexSegundaPareja,j,0] = copiaPareja1[j,1]
-			padres[indexSegundaPareja,j,1] = copiaPareja2[j,0]
+		for j in range(numero_individuos):	#se hace una reproduccion con los elementos con mejor fitness a los que tuvieron menos
+			padres[indexPrimerPareja,j,0] = copiaPareja1[j,1]
+			padres[indexPrimerPareja,j,1] = copiaPareja2[j,0]
 
 	return padres
 
@@ -165,14 +161,14 @@ def Optimizar(horasSolar,velocidadViento):
 	#Crear una poblacion con seis comunidades
 	padres = PoblacionInicial()
 
-	for i in range(10):
+	for i in range(100):
 		hijos = Reproduccion(padres)
 		hijos = MutacionIndividuos(hijos)
 
 	costos = ObtenerCosto(hijos)
 	indexHijoCostoMinimo = np.where(costos == np.amin(costos)) #costo minimos de todas las generaciones
 	minimoCosto = min(costos)
-	valoresSistema = [minimoCosto]
+	valoresSistema = [round(minimoCosto,2)]
 	
 	for hijo in hijos[indexHijoCostoMinimo]:
 		for j in hijo:
@@ -180,5 +176,5 @@ def Optimizar(horasSolar,velocidadViento):
 			valoresSistema.append(j[1])
 
 	print("Poblacion con subsistema menor:\n {}".format(hijos[indexHijoCostoMinimo]))
-	print("Costo de este subsistema: {}".format(minimoCosto))
+	print("Costo de este subsistema: {}".format(round(minimoCosto,2)))
 	return valoresSistema

@@ -11,15 +11,11 @@ def ImprimirResultados(resultados):
 
 	lblTS = tk.Label(frameResultado, text="SOLAR")
 	lblTS.pack(fill="both", ipadx=5, ipady=5)
-	if resultados[1] != 0 or resultados[2] != 0:
-		lblCS = tk.Label(frameResultado, text="Capacidad de uso : " + str(resultados[1]), width=6)
-		lblCS.pack(fill="both", ipadx=5, ipady=5)
+	lblCS = tk.Label(frameResultado, text="Capacidad de uso : " + str(resultados[1]), width=6)
+	lblCS.pack(fill="both", ipadx=5, ipady=5)
 
-		lblUS = tk.Label(frameResultado, text="Porcentaje de uso : " + str(resultados[2]), width=6)
-		lblUS.pack(fill="both", ipadx=5, ipady=5)
-	else:
-		lblTS = tk.Label(frameResultado, text="No es necesario el uso de este producto")
-		lblTS.pack(fill="both", ipadx=5, ipady=5)
+	lblUS = tk.Label(frameResultado, text="Porcentaje de uso : " + str(resultados[2]), width=6)
+	lblUS.pack(fill="both", ipadx=5, ipady=5)
 
 	lblTV = tk.Label(frameResultado, text="VIENTO")
 	lblTV.pack(fill="both", ipadx=5, ipady=5)
