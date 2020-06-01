@@ -152,9 +152,9 @@ def Optimizar(horasSolar,velocidadViento):
 
 	Capacidad['SOLAR'] = capacidadSolar
 
-	if velocidadViento < 3:
+	if velocidadViento < 6:
 		capacidadViento = 0
-	elif velocidadViento >= 3 and velocidadViento < 10:
+	elif velocidadViento >= 6 and velocidadViento < 10:
 		capacidadViento = .0075 * math.pow(1.6,velocidadViento)
 	elif velocidadViento >= 10 and velocidadViento < 12:
 		capacidadViento = -0.05 + (0.0875*velocidadViento)
@@ -173,11 +173,12 @@ def Optimizar(horasSolar,velocidadViento):
 	indexHijoCostoMinimo = np.where(costos == np.amin(costos)) #costo minimos de todas las generaciones
 	minimoCosto = min(costos)
 	valoresSistema = [minimoCosto]
-	print(hijos[indexHijoCostoMinimo])
+	
 	for hijo in hijos[indexHijoCostoMinimo]:
 		for j in hijo:
 			valoresSistema.append(j[0])
 			valoresSistema.append(j[1])
-	
-	print(valoresSistema)
+
+	print("Poblacion con subsistema menor:\n {}".format(hijos[indexHijoCostoMinimo]))
+	print("Costo de este subsistema: {}".format(minimoCosto))
 	return valoresSistema
