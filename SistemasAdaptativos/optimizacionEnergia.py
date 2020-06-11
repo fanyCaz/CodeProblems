@@ -159,10 +159,10 @@ def Optimizar(horasSolar,velocidadViento):
 
 	Capacidad['VIENTO'] = capacidadViento
 	#Crear una poblacion con seis comunidades
-	padres = PoblacionInicial()
-
+	
+	hijos = PoblacionInicial()
 	for i in range(100):
-		hijos = Reproduccion(padres)
+		hijos = Reproduccion(hijos)
 		hijos = MutacionIndividuos(hijos)
 
 	costos = ObtenerCosto(hijos)
