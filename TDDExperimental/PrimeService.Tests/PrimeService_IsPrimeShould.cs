@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using PrimeService;
 
 namespace PrimeService.UnitTests.Services
 {
@@ -7,10 +6,12 @@ namespace PrimeService.UnitTests.Services
     public class PrimeService_IsPrimeShould
     {
         private PrimeService _primeService;
+        
         [SetUp]
         public void Setup()
         {
             _primeService = new PrimeService();
+            
         }
 
         [Test]
@@ -23,10 +24,19 @@ namespace PrimeService.UnitTests.Services
         [TestCase(-1)]
         [TestCase(0)]
         [TestCase(12)]
-        public void IsPrime_ValuesLessThan2_ReturnFalse(int value)
+        public void IsPrime_ValuesNotPrime_ReturnFalse(int value)   //el nombre debe decir funcion_queSeEvalua_queDebeRetornar
         {
+            //En las pruebas nunca debe haber logica
             var result = _primeService.IsPrimer(value);
-            Assert.IsFalse(result, $"{value} should not be prime");
+            Assert.IsFalse(result,"Es primo");
+        }
+
+        [TestCase(0)]
+        public void IsEntero_NumeroSalida_ReturnInt(int value)
+        {
+            int expected = 0;
+            var actual = _primeService.SerieFibonacci(value);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
