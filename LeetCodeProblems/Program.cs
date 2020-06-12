@@ -68,19 +68,21 @@ namespace LeetCodeProblems
             throw new Exception("No hubo solución");
         }
 
-        public static void HashTable()
+        public static int ObtenerFibonacci()
         {
 
+            return 0;
         }
 
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
             int[] num = new int[3] { 3, 2, 4 };
-            int[] response = TwoSumOnePassHashTable(num,6);
-            Console.WriteLine(response[0] + " - " + response[1]);
+            //int[] response = twosumonepasshashtable(num, 6);
+            //Console.WriteLine(response[0] + " - " + response[1]);
             int[] majority_elements = new int[1] { 1 };
-            Console.WriteLine( RetoMayo.MajorityElement(majority_elements) );
+            //Console.WriteLine( RetoMayo.MajorityElement(majority_elements) );
+            ObtenerFibonacci();
         }
     }
 }
