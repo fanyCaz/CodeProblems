@@ -47,5 +47,12 @@ namespace PrimeService.UnitTests.Services
             Assert.AreEqual(new int[] { 11, 23 }, _primeService.Divisors(253));
             Assert.AreEqual(new int[] { 2, 3, 4, 6, 8, 12 }, _primeService.Divisors(24));
         }
+        [Test]
+        public void IsPalindrome_Bool()
+        {
+            Assert.AreEqual(true, _primeService.IsPalindrome(121));
+            Assert.AreEqual(false, _primeService.IsPalindrome(-121));
+            Assert.AreEqual(false, _primeService.IsPalindrome(10));
+        }
     }
 }

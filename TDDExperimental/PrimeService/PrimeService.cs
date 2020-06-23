@@ -42,9 +42,26 @@ namespace PrimeService
                 }
                 if (divisors.Count > 0) return divisors.ToArray();
                 return null;
-                
             }
             throw new Exception("No es mayor a 1");
+        }
+
+        public bool IsPalindrome(int x)
+        {
+            string number = x.ToString();
+            int i=0, j=number.Length-1;
+            for(int k=0; k < number.Length/2; k++)
+            {
+                if(number[i] != number[j])
+                { 
+                    return false;
+                }
+                i++;
+                j--;
+            }
+            return true;
+
+
         }
     }
 }
