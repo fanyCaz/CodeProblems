@@ -38,5 +38,14 @@ namespace PrimeService.UnitTests.Services
             var actual = _primeService.SerieFibonacci(value);
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void SampleTest()
+        {
+            Assert.AreEqual(new int[] { 3, 5 }, _primeService.Divisors(15));
+            Assert.AreEqual(new int[] { 2, 4, 8 }, _primeService.Divisors(16));
+            Assert.AreEqual(new int[] { 11, 23 }, _primeService.Divisors(253));
+            Assert.AreEqual(new int[] { 2, 3, 4, 6, 8, 12 }, _primeService.Divisors(24));
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PrimeService
 {
@@ -21,11 +23,28 @@ namespace PrimeService
             {
                 return resultado;
             }
-            else
-            {
-
-            }
+            
             return resultado;
+        }
+
+        public int[] Divisors(int n)
+        {
+            if(n > 1)
+            {
+                List<int> divisors = new List<int>();
+                int mitadNumero = (n / 2);
+                for(int i = 2; i <= mitadNumero; i++)
+                {
+                    if(n%i == 0)
+                    {
+                        divisors.Add(i);
+                    }
+                }
+                if (divisors.Count > 0) return divisors.ToArray();
+                return null;
+                
+            }
+            throw new Exception("No es mayor a 1");
         }
     }
 }
