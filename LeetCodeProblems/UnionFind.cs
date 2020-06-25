@@ -6,6 +6,7 @@ using System.Text;
 namespace LeetCodeProblems
 {
     class UnionFind //data type --->QUICK FIND, algoritmo cuadrático
+                    //data structure --> array[n]
     {
         private int[] id = new int[] { };
         

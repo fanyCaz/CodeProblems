@@ -75,17 +75,14 @@ namespace LeetCodeProblems
             return 0;
         }
 
-        static void Main(string[] args)
+        public static void QuickFind()
         {
-            Console.WriteLine("Hello World!");
-            
-            Console.WriteLine("Dynamic Connectivity Client\n");
             Console.WriteLine("Leer cantidad de Numeros del Universo\n");
             string N = Console.ReadLine();
             var watch = System.Diagnostics.Stopwatch.StartNew();    //mide el tiempo de ejecucion
             UnionFind unionFind = new UnionFind(int.Parse(N));
             //El origen lo toma en donde esta el dll
-            foreach(string line in File.ReadLines(@"../../../nodos.txt"))
+            foreach (string line in File.ReadLines(@"../../../nodos.txt"))
             {
                 int p = int.Parse(line[0].ToString());  //lo paso a string primero, porque estaba obteniendo los valores ASCII
                 int q = int.Parse(line[2].ToString());
@@ -98,6 +95,36 @@ namespace LeetCodeProblems
             unionFind.Show();
             watch.Stop(); //fin de checar el tiempo de ejecucion
             Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+        }
+
+        public static void QuickUnionExec()
+        {
+            Console.WriteLine("Leer cantidad de Numeros del Universo\n");
+            string N = Console.ReadLine();
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            QuickUnionExec quickUnion = new QuickUnionExec(int.Parse(N));
+            foreach (string line in File.ReadLines(@"../../../nodos.txt"))
+            {
+                int p = int.Parse(line[0].ToString());  //lo paso a string primero, porque estaba obteniendo los valores ASCII
+                int q = int.Parse(line[2].ToString());
+                if (!quickUnion.Connected(p, q))
+                {
+                    quickUnion.Union(p, q);
+                    Console.WriteLine("P = {0}, Q = {1}", p, q);
+                }
+            }
+            quickUnion.Show();
+            watch.Stop(); //fin de checar el tiempo de ejecucion
+            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+
+            Console.WriteLine("Dynamic Connectivity Client\n");
+            QuickUnionExec();
+            
         }
     }
 }
