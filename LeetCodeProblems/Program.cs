@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 
 namespace LeetCodeProblems
 {
@@ -77,12 +78,26 @@ namespace LeetCodeProblems
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            int[] num = new int[3] { 3, 2, 4 };
-            //int[] response = twosumonepasshashtable(num, 6);
-            //Console.WriteLine(response[0] + " - " + response[1]);
-            int[] majority_elements = new int[1] { 1 };
-            //Console.WriteLine( RetoMayo.MajorityElement(majority_elements) );
-            ObtenerFibonacci();
+            
+            Console.WriteLine("Dynamic Connectivity Client\n");
+            Console.WriteLine("Leer cantidad de Numeros del Universo\n");
+            string N = Console.ReadLine();
+            var watch = System.Diagnostics.Stopwatch.StartNew();    //mide el tiempo de ejecucion
+            UnionFind unionFind = new UnionFind(int.Parse(N));
+            //El origen lo toma en donde esta el dll
+            foreach(string line in File.ReadLines(@"../../../nodos.txt"))
+            {
+                int p = int.Parse(line[0].ToString());  //lo paso a string primero, porque estaba obteniendo los valores ASCII
+                int q = int.Parse(line[2].ToString());
+                if (!unionFind.Connected(p, q))
+                {
+                    unionFind.Union(p, q);
+                    Console.WriteLine("P = {0}, Q = {1}", p, q);
+                }
+            }
+            unionFind.Show();
+            watch.Stop(); //fin de checar el tiempo de ejecucion
+            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
         }
     }
 }
