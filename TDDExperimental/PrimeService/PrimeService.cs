@@ -60,8 +60,13 @@ namespace PrimeService
                 j--;
             }
             return true;
-
-
         }
+
+        public int squareRoot(int x)
+        {
+            
+        }
+
+        
     }
 }
