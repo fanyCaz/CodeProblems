@@ -4,17 +4,18 @@ using System.Text;
 
 namespace LeetCodeProblems
 {
-    //Algorithm --> QUICK UNION
-    //Data Structure --> array[n]
-    class QuickUnionExec
+    class QuickUnionWeighted
     {
         private int[] id = new int[] { };
-        public QuickUnionExec(int N)
+        private int[] sz = new int[] { };
+        public QuickUnionWeighted(int N)
         {
             id = new int[N];
-            for(int i = 0; i< N; i++)
+            sz = new int[N];
+            for (int i = 0; i < N; i++)
             {
                 id[i] = i;
+                sz[i] = 1;  //se le agrega el peso inicial a cada nodo
             }
         }
 
@@ -22,15 +23,11 @@ namespace LeetCodeProblems
         {
             if (id[node] != node)     //##solucion con recursividad, tarda mas de 10 ms
             {
+                id[node] = id[id[node]];        //comprimir el path del nodo a la raiz,
+                                                //haciendo que cada uno apunte a la raiz
                 return Root(id[node]);  //busca la raiz del valor en el arreglo hasta que sean iguales
             }
             return node;
-
-            //while (node != id[node])        //Solucion con While, tarda menos en promedio
-            //{
-            //    node = id[node];
-            //}
-            //return node;
         }
 
         public bool Connected(int p, int q)
@@ -42,7 +39,17 @@ namespace LeetCodeProblems
         {
             var rootQ = Root(q);
             var rootP = Root(p);
-            id[rootP] = rootQ;
+            if( rootP == rootQ) { return; }
+            if(sz[rootP] < sz[rootQ])
+            {
+                id[rootP] = rootQ;
+                sz[rootQ] += sz[rootP];
+            }
+            else
+            {
+                id[rootQ] = rootP;
+                sz[rootP] += sz[rootQ];
+            }
         }
 
         public void Show()
@@ -52,6 +59,5 @@ namespace LeetCodeProblems
                 Console.WriteLine("{0}", i);
             }
         }
-
     }
 }
