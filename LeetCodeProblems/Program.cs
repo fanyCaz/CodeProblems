@@ -69,12 +69,6 @@ namespace LeetCodeProblems
             throw new Exception("No hubo solución");
         }
 
-        public static int ObtenerFibonacci()
-        {
-
-            return 0;
-        }
-
         public static void QuickFind()
         {
             Console.WriteLine("Leer cantidad de Numeros del Universo\n");
@@ -123,7 +117,8 @@ namespace LeetCodeProblems
             Console.WriteLine("Leer cantidad de Numeros del Universo\n");
             string N = Console.ReadLine();
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            QuickUnionWeighted quickUnion = new QuickUnionWeighted(int.Parse(N));
+            QuickUnionWeighted quickUnion = new QuickUnionWeighted();
+                               quickUnion.SetInicialSize(int.Parse(N));
             foreach (string line in File.ReadLines(@"../../../nodos.txt"))
             {
                 int p = int.Parse(line[0].ToString());  //lo paso a string primero, porque estaba obteniendo los valores ASCII
@@ -145,7 +140,9 @@ namespace LeetCodeProblems
 
             Console.WriteLine("Dynamic Connectivity Client\n");
             QuickUnionWeigth();
-            
+            int[] response = MathProblems.RunningSum(new int[] { 3,1,2,10,1 });
+            foreach(int i in response)
+                Console.WriteLine("{0}",i);
         }
     }
 }

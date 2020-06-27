@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCodeProblems
 {
-    class RetoMayo
+    class MathProblems
     {
         /*Majority element is the one that appears more than n/2 times in a  n-length array*/
         public static int MajorityElement(int[] nums)
@@ -29,6 +30,23 @@ namespace LeetCodeProblems
                 }
             }
             throw new Exception("No habia ese valor");
+        }
+
+        public static int[] RunningSum(int[] nums)
+        {
+            if(nums.Length < 1 || nums.Length > 1000)
+            {
+                throw new Exception("No se puede esta cantidad");
+            }
+            int lastValue = nums.First();
+            for (int i = 0; i < nums.Length ; i++)
+            {
+                nums[i] = lastValue;
+                lastValue = lastValue + nums[(i+1) % nums.Length];
+            }
+
+
+            return nums;
         }
     }
 }
