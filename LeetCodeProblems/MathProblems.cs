@@ -51,7 +51,6 @@ namespace LeetCodeProblems
 
         public static int NumberOfSteps(int num)
         {
-            if (num == 0) return 0;
             int steps = 0;
             while(num != 0)
             {
@@ -59,6 +58,19 @@ namespace LeetCodeProblems
                 steps += 1;
             }
             return steps;
+        }
+
+        public static int XorOperation(int n, int start)
+        {
+            //XOR Exclusive OR : 1 + 0 = 1, 1 + 1 = 0, 0 + 0 = 0;
+            //En numeros suma sus numeros en binario
+            //explanation: https://riptutorial.com/es/cplusplus/example/8514/----xor-bitwise--or-exclusivo-
+            int resultXor = 0;
+            for(int i= 0; i < n; i++)
+            {
+                resultXor ^= start + 2 * i;
+            }
+            return resultXor;
         }
     }
 }

@@ -139,8 +139,8 @@ namespace LeetCodeProblems
             Console.WriteLine("Hello World!");
 
             Console.WriteLine("Dynamic Connectivity Client\n");
-            int response = MathProblems.NumberOfSteps(1);
-            Console.WriteLine("{0} veces para llegar a 0", response);
+            int response = MathProblems.XorOperation(10,5);
+            Console.WriteLine("Resultado de XOR : {0}", response);
 
         }
     }
