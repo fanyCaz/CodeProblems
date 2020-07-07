@@ -139,7 +139,10 @@ namespace LeetCodeProblems
             Console.WriteLine("Hello World!");
 
             Console.WriteLine("Dynamic Connectivity Client\n");
-            int response = MathProblems.XorOperation(10,5);
+            int[,,] array3Da = new int[, , ] { { { 1, 2, 3 }, { 4, 5, 6 } },
+                                       { { 7, 8, 9 }, { 10, 11, 12 } } };
+
+            int response = BinarySearch.CountNegatives(grid);
             Console.WriteLine("Resultado de XOR : {0}", response);
 
         }
