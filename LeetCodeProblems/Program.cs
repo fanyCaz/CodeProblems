@@ -139,10 +139,9 @@ namespace LeetCodeProblems
             Console.WriteLine("Hello World!");
 
             Console.WriteLine("Dynamic Connectivity Client\n");
-            QuickUnionWeigth();
-            int[] response = MathProblems.RunningSum(new int[] { 3,1,2,10,1 });
-            foreach(int i in response)
-                Console.WriteLine("{0}",i);
+            int response = MathProblems.NumberOfSteps(1);
+            Console.WriteLine("{0} veces para llegar a 0", response);
+
         }
     }
 }
