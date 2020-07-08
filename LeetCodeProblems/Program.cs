@@ -139,11 +139,9 @@ namespace LeetCodeProblems
             Console.WriteLine("Hello World!");
 
             Console.WriteLine("Dynamic Connectivity Client\n");
-            int[,,] array3Da = new int[, , ] { { { 1, 2, 3 }, { 4, 5, 6 } },
-                                       { { 7, 8, 9 }, { 10, 11, 12 } } };
-
-            int response = BinarySearch.CountNegatives(grid);
-            Console.WriteLine("Resultado de XOR : {0}", response);
+            int[] arr = new int[] { 1, 3, 4, 2, 2 };
+            int response = BinarySearch.FindDuplicateNumberFloydAlg(arr);
+            Console.WriteLine("Resultado : {0}", response);
 
         }
     }
