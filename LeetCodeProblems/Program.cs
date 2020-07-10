@@ -143,9 +143,7 @@ namespace LeetCodeProblems
             int[] arr = new int[] { 1, 3, 4, 2, 2 };
             int[,] grid = new int[4, 4] { { 0, 1, 0, 0 }, { 1, 1, 1, 0 }, { 0, 1, 0, 0 }, { 1, 1, 0, 0 } };
             Console.WriteLine(grid);
-            int response = BinarySearch.IslandPerimeter(grid);
-            Console.WriteLine("Resultado : {0}", response);
-
+            
         }
     }
 }
