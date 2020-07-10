@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 
 namespace LeetCodeProblems
 {
@@ -140,7 +141,9 @@ namespace LeetCodeProblems
 
             Console.WriteLine("Dynamic Connectivity Client\n");
             int[] arr = new int[] { 1, 3, 4, 2, 2 };
-            int response = BinarySearch.FindDuplicateNumberFloydAlg(arr);
+            int[,] grid = new int[4, 4] { { 0, 1, 0, 0 }, { 1, 1, 1, 0 }, { 0, 1, 0, 0 }, { 1, 1, 0, 0 } };
+            Console.WriteLine(grid);
+            int response = BinarySearch.IslandPerimeter(grid);
             Console.WriteLine("Resultado : {0}", response);
 
         }

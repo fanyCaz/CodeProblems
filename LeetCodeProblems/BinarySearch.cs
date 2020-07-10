@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml.XPath;
 
@@ -62,24 +63,22 @@ namespace LeetCodeProblems
 
         public static int IslandPerimeter(int[][] grid)
         {
-            Dictionary<int, int> neighbours = new Dictionary<int, int>();
-            neighbours.Add(0, 4);
-            neighbours.Add(1, 3);
-            neighbours.Add(2, 2);
-            neighbours.Add(3, 1);
-            neighbours.Add(4, 0);
-
+            int perimetro = 0;
+            Console.WriteLine(grid);
             for (int i = 0; i < grid.Length; i++)
             {
-                for(int j = 0; j < grid[i].Length; j++)
+                for (int j = 0; j < grid[i].Length; j++)
                 {
-                    if(grid[i][4 % j+1] == 1)
-                    {
-                        return 1;
-                    }
+                    if (grid[i][j] != 1) break; 
+                    int izq = (j == 0) ? 0 : grid[i][j-1];
+                    int der = (j == grid[i].Length - 1) ? 0 : grid[i][j+1];
+                    int arriba = (i == 0) ? 0 : grid[i-1][j];
+                    int abajo  = (i == grid.Length - 1) ? 0 : grid[i+ 1][j];
+                    perimetro += (4 - izq + der + arriba + abajo);
+                    Console.WriteLine("{0},{1},{2},{3}",izq, der, arriba, abajo);
                 }
             }
-            throw new Exception("Error al ejecutar");
+            return perimetro;
         }
     }
 }

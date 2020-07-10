@@ -8,7 +8,7 @@ namespace LeetCodeProblems
     {
         private int[] id = new int[] { };
         private int[] sz = new int[] { };
-        public QuickUnionWeighted(int N)
+        public void SetInicialSize(int N)
         {
             id = new int[N];
             sz = new int[N];
@@ -60,4 +60,6 @@ namespace LeetCodeProblems
             }
         }
     }
+
+    
 }
