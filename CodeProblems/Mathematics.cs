@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CodeProblems
 {
@@ -64,6 +65,22 @@ namespace CodeProblems
                 }
             }
             throw new Exception("No hubo solución");
+        }
+
+        //first duplicate with minimun index difference
+        public static int firstDuplicate(int[] nums)
+        {
+            Dictionary<int, int> numbers = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (numbers.ContainsKey(nums[i]))
+                {
+                    return nums[i];
+                }
+                numbers.Add(nums[i], 1);
+
+            }
+            return -1;
         }
     }
 }

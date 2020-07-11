@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CodeProblems
 {
-    class Search
+    class SearchStruc
     {
         //Count how many negative numbers there are in a grid
         public static int CountNegatives(int[][] grid)
@@ -21,21 +21,6 @@ namespace CodeProblems
                 }
             }
             return negatives;
-        }
-
-        public static int FindDuplicateNumber(int[] nums)
-        {
-            Dictionary<int, int> numbers = new Dictionary<int, int>();
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if (numbers.ContainsKey(nums[i]))
-                {
-                    return nums[i];
-                }
-                numbers.Add(nums[i], 1);
-
-            }
-            throw new Exception("No existe ese numero");
         }
 
         //Aplica el algoritmo de la liebre y la tortuga
@@ -77,5 +62,6 @@ namespace CodeProblems
             }
             return perimetro;
         }
+
     }
 }
