@@ -82,5 +82,36 @@ namespace CodeProblems
             }
             return -1;
         }
+
+        public static char firstNonDuplicateLetter(string s)
+        {
+            Dictionary<char, int> letras = new Dictionary<char, int>();
+            List<char> unicas = new List<char>();
+            foreach (char x in s)
+            {
+                if (letras.ContainsKey(x))
+                {
+                    unicas.Remove(x);
+                }
+                else
+                {
+                    letras.Add(x, 1);
+                    unicas.Add(x);
+                }
+            }
+            if (unicas.Count() > 0) return unicas.First();
+            return '_';
+        }
+
+        public static char firstNonDuplicateLetterIndexes(string s)
+        {
+            //Si el index de esa letra al principio y al final es el mismo, quiere decir 
+            // que la letra solo esta en una sola posicion en el array
+            foreach(char x in s)
+            {
+                if (s.IndexOf(x) == s.LastIndexOf(x)) return x;
+            }
+            return '_';
+        }
     }
 }

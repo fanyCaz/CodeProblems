@@ -30,5 +30,23 @@ namespace CodeProblems.UnitTests.Services
             Assert.AreEqual(-1, Mathematics.firstDuplicate(new int[] { 2 }));
             Assert.AreEqual(2, Mathematics.firstDuplicate(new int[] { 1, 0, 2, 2, 1,1 }));
         }
+        [Test]
+        public void NotDuplicatedLetter()
+        {
+            Assert.AreEqual('c', Mathematics.firstNonDuplicateLetter("abacabad"));
+            Assert.AreEqual('_', Mathematics.firstNonDuplicateLetter("abacabaabacaba"));
+            Assert.AreEqual('z', Mathematics.firstNonDuplicateLetter("z"));
+            Assert.AreEqual('_', Mathematics.firstNonDuplicateLetter("bcccccccb"));
+            Assert.AreEqual('_', Mathematics.firstNonDuplicateLetter(""));
+        }
+        [Test]
+        public void NotDuplicatedLetterUsingIndexes()
+        {
+            Assert.AreEqual('c', Mathematics.firstNonDuplicateLetterIndexes("abacabad"));
+            Assert.AreEqual('_', Mathematics.firstNonDuplicateLetterIndexes("abacabaabacaba"));
+            Assert.AreEqual('z', Mathematics.firstNonDuplicateLetterIndexes("z"));
+            Assert.AreEqual('_', Mathematics.firstNonDuplicateLetterIndexes("bcccccccb"));
+            Assert.AreEqual('_', Mathematics.firstNonDuplicateLetterIndexes(""));
+        }
     }
 }
