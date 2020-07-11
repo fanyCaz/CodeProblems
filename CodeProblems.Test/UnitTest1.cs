@@ -1,22 +1,22 @@
 using NUnit.Framework;
 
-namespace CodeProblems.Test
+namespace CodeProblems.UnitTests.Services
 {
     [TestFixture]
-    public class Tests
+    public class CodeTest
     {
-        private codeProblems _CodeProblems;
+        private Program _codeProblems;      //Este debe ser : private NombreDeClaseATestear _variable;
 
         [SetUp]
         public void Setup()
         {
-            _CodeProblems = new CodeProblems();
+            _codeProblems = new Program();
         }
 
         [Test]
-        public void Test1()
+        public void IsPrime_InputIs1_ReturnFalse()
         {
-            Assert.Pass();
+
         }
     }
 }
