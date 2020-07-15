@@ -48,5 +48,15 @@ namespace CodeProblems.UnitTests.Services
             Assert.AreEqual('_', Mathematics.firstNonDuplicateLetterIndexes("bcccccccb"));
             Assert.AreEqual('_', Mathematics.firstNonDuplicateLetterIndexes(""));
         }
+
+        [Test]
+        public void WhatCenturyIsThatYear()
+        {
+            Assert.AreEqual(20, Mathematics.centuryFromYear(1905));
+            Assert.AreEqual(17, Mathematics.centuryFromYear(1700));
+            Assert.AreEqual(20, Mathematics.centuryFromYear(1988));
+            Assert.AreEqual(1, Mathematics.centuryFromYear(45));
+            Assert.AreEqual(2, Mathematics.centuryFromYear(200));
+        }
     }
 }

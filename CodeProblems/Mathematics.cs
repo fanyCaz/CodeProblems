@@ -107,11 +107,19 @@ namespace CodeProblems
         {
             //Si el index de esa letra al principio y al final es el mismo, quiere decir 
             // que la letra solo esta en una sola posicion en el array
-            foreach(char x in s)
+            foreach (char x in s)
             {
                 if (s.IndexOf(x) == s.LastIndexOf(x)) return x;
             }
             return '_';
+        }
+
+        public static int centuryFromYear(int year){
+            if (year < 100) return 1;
+            if (year % 100 == 0) {
+                return (year / 100); 
+            }
+            return (year / 100) + 1;
         }
     }
 }
