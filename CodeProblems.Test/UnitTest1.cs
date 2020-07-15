@@ -9,7 +9,7 @@ namespace CodeProblems.UnitTests.Services
     {
         private Program _codeProblems;      //Este debe ser : private NombreDeClaseATestear _variable;
         private Mathematics _mathematics;
-
+        
         [SetUp]
         public void Setup()
         {
@@ -57,6 +57,15 @@ namespace CodeProblems.UnitTests.Services
             Assert.AreEqual(20, Mathematics.centuryFromYear(1988));
             Assert.AreEqual(1, Mathematics.centuryFromYear(45));
             Assert.AreEqual(2, Mathematics.centuryFromYear(200));
+        }
+
+        [Test]
+        public void IsPalindrome()
+        {
+            Assert.AreEqual(true, Mathematics.checkPalindrome("aabaa"));
+            Assert.AreEqual(false, Mathematics.checkPalindrome("az"));
+            Assert.AreEqual(true, Mathematics.checkPalindrome("hlbeeykoqqqokyeeblh"));
+            Assert.AreEqual(false, Mathematics.checkPalindrome("aaabaaaa"));
         }
     }
 }

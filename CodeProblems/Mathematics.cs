@@ -114,12 +114,31 @@ namespace CodeProblems
             return '_';
         }
 
-        public static int centuryFromYear(int year){
+        public static int centuryFromYear(int year) {
             if (year < 100) return 1;
             if (year % 100 == 0) {
-                return (year / 100); 
+                return (year / 100);
             }
             return (year / 100) + 1;
+        }
+
+        public static bool checkPalindrome(string inputString)      //my approach
+        {
+            if (inputString == ) return true;
+            int j = inputString.Length - 1;
+            for (int i = 0; i < inputString.Length / 2; i++)
+            {
+                if (inputString[i] != inputString[j])
+                {
+                    return false;
+                }
+                j--;
+            }
+            return true;
+        }
+
+        public static bool checkPalindromeBest(string inputString){  //best approach
+            return inputString.SequenceEqual(inputString.Reverse());
         }
     }
 }
