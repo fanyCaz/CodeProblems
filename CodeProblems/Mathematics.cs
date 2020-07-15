@@ -124,7 +124,6 @@ namespace CodeProblems
 
         public static bool checkPalindrome(string inputString)      //my approach
         {
-            if (inputString == ) return true;
             int j = inputString.Length - 1;
             for (int i = 0; i < inputString.Length / 2; i++)
             {
