@@ -1,6 +1,6 @@
 # notas
 
-Solved exercises of pages like LeetCode, CodeWars or CodeSignal.
+Solved exercises of websites like LeetCode, CodeWars or CodeSignal.
 
 These include data structure and algorithms exercises.
 
