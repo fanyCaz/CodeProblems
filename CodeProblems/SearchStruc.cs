@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CodeProblems.Tree;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CodeProblems
 {
-    class SearchStruc
+    public class SearchStruc
     {
         //Count how many negative numbers there are in a grid
         public static int CountNegatives(int[][] grid)
@@ -61,6 +62,24 @@ namespace CodeProblems
                 }
             }
             return perimetro;
+        }
+
+        //Una ciudad tiene sus ciudades interconectadas,
+        //si no tienen la misma cantidad de salidas y entradas,
+        //entonces las carreteras no son buenas para la conexion
+        public static bool newRoadSystem(bool[][] roadRegister)  //my approach
+        {
+            int row = 0,col=0;
+            for(int i = 0; i < roadRegister.Length; i++)
+            {
+                for(int j=0; j < roadRegister[i].Length; j++)
+                {
+                    row += (roadRegister[i][j]) ? 1 : 0;
+                    col += (roadRegister[j][i]) ? 1 : 0;
+                }
+                if (row != col) return false;
+            }
+            return true;
         }
 
     }
