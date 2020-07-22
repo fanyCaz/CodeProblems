@@ -139,5 +139,21 @@ namespace CodeProblems
         public static bool checkPalindromeBest(string inputString){  //best approach
             return inputString.SequenceEqual(inputString.Reverse());
         }
+
+
+        //the biggest product is returned
+        public static int adjacentElementsProduct(int[] inputArray)
+        {
+            int result = -1001;
+            for (int i = 0; i < inputArray.Length - 1; i++)
+            {
+                int mult = inputArray[i] * inputArray[i + 1];
+                if (mult > result)
+                {
+                    result = mult;
+                }
+            }
+            return result;
+        }
     }
 }

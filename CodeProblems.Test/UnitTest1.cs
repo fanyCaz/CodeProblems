@@ -67,5 +67,13 @@ namespace CodeProblems.UnitTests.Services
             Assert.AreEqual(true, Mathematics.checkPalindrome("hlbeeykoqqqokyeeblh"));
             Assert.AreEqual(false, Mathematics.checkPalindrome("aaabaaaa"));
         }
+
+        [Test]
+        public void IsTheBiggestProduct()
+        {
+            Assert.AreEqual(21, Mathematics.adjacentElementsProduct(new int[] { 3, 6, -2, -5, 7, 3 }));
+            Assert.AreEqual(2, Mathematics.adjacentElementsProduct(new int[] { -1, -2 }));
+            Assert.AreEqual(50, Mathematics.adjacentElementsProduct(new int[] { 9, 5, 10, 2, 24, -1, -48 }));
+        }
     }
 }

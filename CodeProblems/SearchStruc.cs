@@ -70,10 +70,10 @@ namespace CodeProblems
         //entonces las carreteras no son buenas para la conexion
         public static bool newRoadSystem(bool[][] roadRegister)  //my approach
         {
-            int row = 0,col=0;
-            for(int i = 0; i < roadRegister.Length; i++)
+            int row = 0, col = 0;
+            for (int i = 0; i < roadRegister.Length; i++)
             {
-                for(int j=0; j < roadRegister[i].Length; j++)
+                for (int j = 0; j < roadRegister[i].Length; j++)
                 {
                     row += (roadRegister[i][j]) ? 1 : 0;
                     col += (roadRegister[j][i]) ? 1 : 0;
@@ -92,19 +92,21 @@ namespace CodeProblems
         /*
          * Se dan las rutas ya existentes, pero se necesita
          * que cada ciudad este conectada con todas
-         * Se toma en cuenta a la arista como bidireccional
+         * Se toma en cuenta a la arista como bidireccional,
+         * asi que puede traer el 'road' de ciudad 'b' a 'a'
          */
         public static int[][] BuildingRoads(int cities, int[][] roads)
         {
             //Se usa una lista porque no se sabe la magnitud final del arreglo
             List<int[]> newRoads = new List<int[]>();
-            for(int i = 0; i < cities; i++)
+            for (int i = 0; i < cities; i++)
             {
-                for(int j=i+1; j < cities; j++)
+                for (int j = i + 1; j < cities; j++)
                 {
                     //Any verifica si en el subconjunto p se cumplen las condiciones
                     //Any siempre regresa un bool
-                    if(!roads.Any(p => p[0] == i && p[1] == j || p[0] == j && p[1] == i))
+                    //Contains no funciona en este caso para el array
+                    if (!roads.Any(p => p[0] == i && p[1] == j || p[0] == j && p[1] == i))
                     {
                         newRoads.Add(new int[] { i, j });
                     }
