@@ -155,5 +155,21 @@ namespace CodeProblems
             }
             return result;
         }
+
+        public static int adjacentElementsProductBest(int[] inputArray)
+        {
+            int result = -1001;
+            for (int i = 0; i < inputArray.Length - 1; i++)
+            {
+                result = Math.Max(result,inputArray[i] * inputArray[i + 1]);
+            }
+            return result;
+        }
+
+        //El area agregada mas el area que ya tenia acumulada en la serie
+        public static int shapeArea(int n)
+        {
+            return n * n + (n - 1) * (n - 1);
+        }
     }
 }
