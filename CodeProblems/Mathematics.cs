@@ -114,9 +114,11 @@ namespace CodeProblems
             return '_';
         }
 
-        public static int centuryFromYear(int year) {
+        public static int centuryFromYear(int year)
+        {
             if (year < 100) return 1;
-            if (year % 100 == 0) {
+            if (year % 100 == 0)
+            {
                 return (year / 100);
             }
             return (year / 100) + 1;
@@ -136,7 +138,8 @@ namespace CodeProblems
             return true;
         }
 
-        public static bool checkPalindromeBest(string inputString){  //best approach
+        public static bool checkPalindromeBest(string inputString)
+        {  //best approach
             return inputString.SequenceEqual(inputString.Reverse());
         }
 
@@ -161,7 +164,7 @@ namespace CodeProblems
             int result = -1001;
             for (int i = 0; i < inputArray.Length - 1; i++)
             {
-                result = Math.Max(result,inputArray[i] * inputArray[i + 1]);
+                result = Math.Max(result, inputArray[i] * inputArray[i + 1]);
             }
             return result;
         }
@@ -170,6 +173,23 @@ namespace CodeProblems
         public static int shapeArea(int n)
         {
             return n * n + (n - 1) * (n - 1);
+        }
+
+        public static int makeArrayConsecutive2(int[] statues)
+        {
+            int statuesNeeded = 0;
+            for (int i = statues.Min(); i < statues.Max(); i++)
+            {
+                if (!statues.Contains(i))
+                {
+                    statuesNeeded += 1;
+                }
+            }
+            return statuesNeeded;
+        }
+        public static int makeArrayConsecutive(int[] statues)
+        {
+            return statues.Max() - statues.Min() - statues.Length + 1;
         }
     }
 }

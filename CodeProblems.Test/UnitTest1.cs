@@ -75,5 +75,13 @@ namespace CodeProblems.UnitTests.Services
             Assert.AreEqual(2, Mathematics.adjacentElementsProduct(new int[] { -1, -2 }));
             Assert.AreEqual(50, Mathematics.adjacentElementsProduct(new int[] { 9, 5, 10, 2, 24, -1, -48 }));
         }
+
+        [Test]
+        public void AreStatuesArranged()
+        {
+            Assert.AreEqual(3, Mathematics.makeArrayConsecutive2(new int[] { 6, 2, 3, 8 }));
+            Assert.AreEqual(0, Mathematics.makeArrayConsecutive2(new int[] { 5, 4, 6 }));
+            Assert.AreEqual(2, Mathematics.makeArrayConsecutive2(new int[] { 0 , 3 }));
+        }
     }
 }
