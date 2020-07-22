@@ -15,6 +15,5 @@ namespace CodeProblems.UnitTests.Services
             _searchStruc = new SearchStruc();
         }
 
-        
     }
 }

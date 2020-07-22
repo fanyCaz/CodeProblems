@@ -1,6 +1,7 @@
 ﻿using CodeProblems.Tree;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CodeProblems
@@ -80,6 +81,36 @@ namespace CodeProblems
                 if (row != col) return false;
             }
             return true;
+        }
+
+        /*Como hacer matriz
+            int[][] h = new int[][] { new int[] { 2, 2 },
+                                      new int[] { 3,3,}
+                                     };
+        */
+
+        /*
+         * Se dan las rutas ya existentes, pero se necesita
+         * que cada ciudad este conectada con todas
+         * Se toma en cuenta a la arista como bidireccional
+         */
+        public static int[][] BuildingRoads(int cities, int[][] roads)
+        {
+            //Se usa una lista porque no se sabe la magnitud final del arreglo
+            List<int[]> newRoads = new List<int[]>();
+            for(int i = 0; i < cities; i++)
+            {
+                for(int j=i+1; j < cities; j++)
+                {
+                    //Any verifica si en el subconjunto p se cumplen las condiciones
+                    //Any siempre regresa un bool
+                    if(!roads.Any(p => p[0] == i && p[1] == j || p[0] == j && p[1] == i))
+                    {
+                        newRoads.Add(new int[] { i, j });
+                    }
+                }
+            }
+            return newRoads.ToArray();
         }
 
     }
