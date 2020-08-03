@@ -83,5 +83,6 @@ namespace CodeProblems.UnitTests.Services
             Assert.AreEqual(0, Mathematics.makeArrayConsecutive2(new int[] { 5, 4, 6 }));
             Assert.AreEqual(2, Mathematics.makeArrayConsecutive2(new int[] { 0 , 3 }));
         }
+
     }
 }
