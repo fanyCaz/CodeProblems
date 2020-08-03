@@ -191,5 +191,26 @@ namespace CodeProblems
         {
             return statues.Max() - statues.Min() - statues.Length + 1;
         }
+
+        public static int FindMaxConsecutiveOnes(int[] nums)
+        {
+            int max = 0, s = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                s++;
+                if (nums[i] == 0)
+                {
+                    s = 0;
+                }
+                else if (s > max)
+                {
+                    max = s;
+                }
+
+            }
+            return max;
+        }
+
     }
 }
+
