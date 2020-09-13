@@ -4,4 +4,4 @@ Solved exercises of websites like LeetCode, CodeWars or CodeSignal.
 
 These include data structure and algorithms exercises.
 
-Everything in C#
+I've included C# and Python
