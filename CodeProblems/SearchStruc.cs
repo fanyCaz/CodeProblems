@@ -115,5 +115,45 @@ namespace CodeProblems
             return newRoads.ToArray();
         }
 
+        public bool almostIncreasingSequence(int[] sequence) {
+            if (sequence.Length == 2) {return true;}
+            int countOne = 0;
+            int countTwo = 0;
+            for (int i = 0; i < sequence.Length - 1; i++) {
+            if (sequence[i] >= sequence[i+1]) {
+                countOne++;
+            }
+            if(i != 0) {
+                if (sequence[i - 1] >= sequence[i + 1]) {
+                    countTwo++;
+                }
+            }
+            }
+            
+            if (countOne == 1 && countTwo <= 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public int matrixElementsSum(int[][] matrix){
+            int sum = 0;
+            for(int i = 0; i < matrix.Length; i++)
+            {
+                //Take While returns elements while the predicate is true
+                sum = matrix.TakeWhile(_=> _[i] != 0).Sum(_=>_[i]);
+                /* for(int j = 0; j < matrix[i].Length; j++){
+                    if(matrix[j][i] != 0 ){
+                        sum+= matrix[j][i];
+                        continue;
+                    }
+                    break;
+                } */
+            }
+            return sum;
+        }
+
+
     }
 }
